@@ -1,0 +1,24 @@
+{
+  "name": "chess",
+  "version": "1.0.0",
+  "description": "The best online Chass game in the Universe",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mike-4040/chess.git"
+  },
+  "keywords": [
+    "chess",
+    "online",
+    "api"
+  ],
+  "author": "Mike Kravtsov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mike-4040/chess/issues"
+  },
+  "homepage": "https://github.com/mike-4040/chess#readme"
+}
