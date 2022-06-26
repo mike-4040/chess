@@ -1,9 +1,12 @@
 import 'dotenv/config';
 import express from 'express';
 
-import { usersRouter } from './routers/users';
-import { errorHandler } from './utils/error';
+import { auth } from './utils/auth';
 import { catchAll, healthCheck } from './utils/handlers';
+import { errorHandler } from './utils/error';
+import { gameRouter } from './routers/games';
+import { usersRouter } from './routers/users';
+
 
 const port = process.env.PORT || 3000;
 
@@ -16,6 +19,7 @@ app
   .use(express.urlencoded({ extended: true }))
   .get('/health', healthCheck)
   .use('/users', usersRouter)
+  .use('/games', auth, gameRouter)
   .use('*', catchAll)
   .use(errorHandler)
   .listen(port, () => {
