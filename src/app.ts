@@ -6,7 +6,7 @@ import { catchAll, healthCheck } from './utils/handlers';
 import { errorHandler } from './utils/error';
 import { gameRouter } from './routers/games';
 import { usersRouter } from './routers/users';
-
+import { movesRouter } from './routers/moves';
 
 const port = process.env.PORT || 3000;
 
@@ -20,6 +20,7 @@ app
   .get('/health', healthCheck)
   .use('/users', usersRouter)
   .use('/games', auth, gameRouter)
+  .use('/moves', auth, movesRouter)
   .use('*', catchAll)
   .use(errorHandler)
   .listen(port, () => {
