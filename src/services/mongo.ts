@@ -3,8 +3,9 @@ import { MongoClient, ServerApiVersion } from 'mongodb';
 const dbPass = process.env.MONGODB_PASS;
 const dbUser = process.env.MONGODB_USER;
 const clusterUrl = 'dev.hynyi.mongodb.net';
+const connectionOptions = 'retryWrites=true&w=majority';
 
-const uri = `mongodb+srv://${dbUser}:${dbPass}@${clusterUrl}/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${dbUser}:${dbPass}@${clusterUrl}/?${connectionOptions}`;
 
 export const dbClient = new MongoClient(uri, {
   serverApi: ServerApiVersion.v1,

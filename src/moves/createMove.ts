@@ -7,7 +7,7 @@ import { insertMove } from './dataStore';
 import { updateBoard } from '../games/helpers';
 import { validateCurrentLocation } from './helpers';
 
-export async function postMove(
+export async function createMove(
   uid: string,
   piece: Piece,
   from: string,

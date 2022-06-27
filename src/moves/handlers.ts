@@ -3,7 +3,7 @@ import type { NextFunction, Request, Response } from 'express';
 import type { ChessRequest } from '../utils/types';
 import { getPossibleMoves } from './getPossibleMoves';
 import type { Piece } from '../games/types';
-import { postMove } from './postMove';
+import { createMove } from './createMove';
 
 export async function getPossibleMovesController(
   req: Request,
@@ -32,7 +32,9 @@ export async function postMoveController(
     const { gameId } = params;
     const { piece, from, to } = body;
 
-    const moveId = await postMove(uid, piece as Piece, from, to, gameId);
+    /** @todo type validation */
+
+    const moveId = await createMove(uid, piece as Piece, from, to, gameId);
 
     res.json({ moveId });
   } catch (err) {
