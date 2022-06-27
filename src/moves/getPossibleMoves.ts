@@ -1,8 +1,9 @@
-import type { ColKey, Piece, RowKey } from '../games/types';
+import type { Piece } from '../games/types';
 import { findGame } from '../games/dataStore';
 import { generateMovesFunctions } from './moves';
-import type { Move, generateMovesFunction } from './types';
+import type { Move, GenerateMovesFunction } from './types';
 import { UserError } from '../utils/error';
+import { validateCurrentLocation } from './helpers';
 
 export async function getPossibleMoves(
   uid: string,
@@ -18,23 +19,7 @@ export async function getPossibleMoves(
 
   const { board } = game;
 
-  const [col, row] = from.split('') as [ColKey, RowKey];
-
-  if (!(row in board)) {
-    throw new UserError(`Wrong Row '${row}'.`);
-  }
-
-  if (!(col in board[row])) {
-    throw new UserError(`Wrong Column '${col}'.`);
-  }
-
-  const pieceAtFrom = board[row][col];
-
-  if (piece !== pieceAtFrom) {
-    throw new UserError(
-      `No cheating! Found not '${piece}' but '${pieceAtFrom}' at ${from}.`
-    );
-  }
+  validateCurrentLocation(from, board, piece);
 
   if (!generateMovesFunctions.has(piece)) {
     throw new UserError(`Moves for ${piece} is not implemented yet.`);
@@ -42,7 +27,7 @@ export async function getPossibleMoves(
 
   const moveFunction = generateMovesFunctions.get(
     piece
-  ) as generateMovesFunction;
+  ) as GenerateMovesFunction;
 
   const moves = moveFunction(from, board).map(move => ({
     ...move,

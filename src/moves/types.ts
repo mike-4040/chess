@@ -6,11 +6,16 @@ export interface MoveTo {
 }
 
 export interface Move extends MoveTo {
-  piece: Piece,
-  from: string,
+  piece: Piece;
+  from: string;
+  uid?: string;
+  recordedAt?: Date;
+  gameId?: string;
 }
 
-export type generateMovesFunction = (
+export type CompleteMove = Required<Move>;
+
+export type GenerateMovesFunction = (
   location: string,
   board: Board
 ) => MoveTo[];

@@ -1,15 +1,27 @@
-import type { Board, ColKey, RowKey } from '../games/types';
+import type { Board, ColKey, Piece, RowKey } from '../games/types';
+import { UserError } from '../utils/error';
 import type { MoveTo } from './types';
-
+/**
+ *
+ * @param from
+ * @param colDiff - 0 - stay, positive - move right, negative - move left
+ * @param rowDiff - 0 - stay, positive - move up,    negative - move down
+ * @param board
+ * @param myColor
+ * @param captureOnly - valid only if capture
+ * @param canCapture  -
+ * @returns
+ */
 export function tryMove(
-  location: string,
+  from: string,
   colDiff: number,
   rowDiff: number,
   board: Board,
   myColor: string,
-  captureOnly: boolean
+  captureOnly: boolean,
+  canCapture: boolean
 ): MoveTo | null {
-  const [col, row] = location.split('') as [ColKey, RowKey];
+  const [col, row] = from.split('') as [ColKey, RowKey];
 
   const newCol = colDiff ? changeCol(col, colDiff) : col;
   const newRow = rowDiff ? changeRow(row, rowDiff) : row;
@@ -30,12 +42,13 @@ export function tryMove(
   if (colorAtNew === myColor) {
     return null;
   }
-  return { newLocation, captured: true };
+
+  return canCapture ? { newLocation, captured: true } : null;
 }
 
 /**
- * 
- * @param row 
+ *
+ * @param row
  * @param diff - 0 - stay, positive - move up, negative - move down
  * @returns new row if valid, otherwise - null
  */
@@ -51,8 +64,8 @@ function changeRow(row: RowKey, diff: number): RowKey | null {
 const LEFT_EDGE = 96;
 
 /**
- * 
- * @param colKey 
+ *
+ * @param col
  * @param diff - 0 - stay, positive - move right, negative - move left
  * @returns new col if valid, otherwise - null
  */
@@ -63,4 +76,26 @@ function changeCol(col: ColKey, diff: number): ColKey | null {
     return null;
   }
   return String.fromCharCode(newColVal + LEFT_EDGE) as ColKey;
+}
+
+export function validateCurrentLocation(
+  from: string,
+  board: Board,
+  piece: Piece
+): void {
+  const [col, row] = from.split('') as [ColKey, RowKey];
+
+  if (!(row in board)) {
+    throw new UserError(`Wrong Row '${row}' in 'from'.`);
+  }
+
+  if (!(col in board[row])) {
+    throw new UserError(`Wrong Column '${col} in 'from'.`);
+  }
+
+  const pieceAtFrom = board[row][col];
+
+  if (piece !== pieceAtFrom) {
+    throw new UserError(`No cheating! Found not '${piece}' at ${from}.`);
+  }
 }

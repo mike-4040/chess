@@ -1,8 +1,7 @@
 import { Router } from 'express';
 
-import { getPossibleMovesController } from '../moves/handlers';
+import { getPossibleMovesController, postMoveController } from '../moves/handlers';
 
-export const movesRouter = Router().get(
-  '/:gameId/:piece/:from',
-  getPossibleMovesController
-);
+export const movesRouter = Router()
+  .get('/:gameId/:piece/:from', getPossibleMovesController)
+  .post('/:gameId', postMoveController);
