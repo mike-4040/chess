@@ -22,7 +22,7 @@ process.on('SIGINT', async () => {
 
   await dbClient.close();
 
-  console.log(`\nI've been murdered!!!\n`);
+  console.log(`\nMongo Client: "I've been murdered!!!"\n`);
 
   process.exit();
 });

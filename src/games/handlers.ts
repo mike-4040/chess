@@ -29,8 +29,6 @@ export const getGameController = async (
     const { uid, params } = req as ChessRequest;
     const { gameId } = params;
 
-    console.log({ gameId, uid})
-
     const game = await getGame(uid, gameId);
 
     res.json({ game });

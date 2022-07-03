@@ -2,7 +2,7 @@ import { Board, Piece } from '../games/types';
 
 export interface MoveTo {
   newLocation: string;
-  captured: boolean;
+  capture: boolean;
 }
 
 export interface Move extends MoveTo {
