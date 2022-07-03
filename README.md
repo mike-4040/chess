@@ -47,3 +47,44 @@ moves should result in an error code of your choosing.
 - For the purposes of this question, assume that 1. Many chess games can be created by many users, but 2. Each chess game is played by one person, against him/her-self, in a single browser window/app. In other words, do not worry about attempting to broadcast updates to other players and supporting a multi-user, live-time experience.
 - To reiterate: Only worry about moving/updating pawns for endpoints 3 and 4. Do not implement logic for endpoints 3 and 4 for any other pieces.
 - Because you are only moving/updating pawns, do not worry about detecting checkmate or stalemate, or promoting a pawn.
+
+## Set up
+
+1. Mongo DB access
+
+- obtain db credential from the Developer
+- add them to `.env.template` in the project root folder
+- remove file extension, should become `.env`.
+
+2. Installing Dependencies
+
+```bash
+npm run i
+```
+
+3. Running application
+
+Developer mode
+```bash
+npm start
+```
+
+Production
+```bash
+npm run start:prod
+```
+
+## Usage
+
+The Application allows to play Chess game via API.
+API Documentation available at [Chess API](https://documenter.getpostman.com/view/6976266/UzJFvJ2E#229e70ca-0871-4f53-a487-5b357fa69681)
+
+You can use any API client, I suggest postman.com
+
+1. Sign up (create User)
+User Create User endpoint, add `email` to the body, any string.
+
+2. Log in
+Use Get User endpoint to obtain `token` (it's actually just user id).
+Use `token` as Bearer token.
+Or just set it as ``{{token}}`` postman token variable and postman will take care of everything.
