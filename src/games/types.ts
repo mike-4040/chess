@@ -26,7 +26,6 @@ export interface Row {
   h: Piece;
 }
 
-
 export interface Board {
   '1': Row;
   '2': Row;
@@ -39,11 +38,14 @@ export interface Board {
 }
 
 export type ColKey = keyof Row;
-export type RowKey = keyof Board
+export type RowKey = keyof Board;
+
+type Side = 'w' | 'b';
 
 export interface Game {
   _id: ObjectId;
   board: Board;
   ended: boolean;
   uid: string;
+  nextSide: Side
 }

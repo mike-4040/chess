@@ -20,7 +20,13 @@ export async function createMove(
     throw new UserError(`Game '${gameId}' is not found.`);
   }
 
-  const { board } = game;
+  const { board, nextSide } = game;
+
+  const movingSide = piece.charAt(1);
+
+  if (movingSide !== nextSide) {
+    throw new UserError('Not your turn!');
+  }
 
   validateCurrentLocation(from, board, piece);
 
@@ -55,7 +61,9 @@ export async function createMove(
 
   updateBoard(board, piece, from, to);
 
-  await updateGame(game._id, { $set: { board } });
+  const newNextSide = nextSide === 'w' ? 'b' : 'w';
+
+  await updateGame(game._id, { $set: { board, nextSide: newNextSide } });
 
   return moveId;
 }

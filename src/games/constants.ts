@@ -61,4 +61,5 @@ const initialBoard: Board = {
 export const initialGame: Omit<Game, '_id' | 'uid'> = {
   ended: false,
   board: initialBoard,
+  nextSide: 'w',
 };
