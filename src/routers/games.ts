@@ -5,7 +5,7 @@ import {
   getGameController,
   getGamesController,
   getMovesHistoryController,
-} from '../games/handlers';
+} from '../handlers/games';
 
 export const gameRouter = Router()
   .get('/', getGamesController)

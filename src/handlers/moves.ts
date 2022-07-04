@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from 'express';
 
 import type { ChessRequest } from '../utils/types';
-import { getPossibleMoves } from './getPossibleMoves';
+import { getPossibleMoves } from '../moves/getPossibleMoves';
 import type { Piece } from '../games/types';
-import { createMove } from './createMove';
+import { createMove } from '../moves/createMove';
 
 export async function getPossibleMovesController(
   req: Request,

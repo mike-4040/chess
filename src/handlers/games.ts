@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from 'express';
 import { UserError } from '../utils/error';
 import type { ChessRequest } from '../utils/types';
-import { createGame } from './createGame';
-import { getGame } from './getGame';
-import { getGames } from './getGames';
+import { createGame } from '../games/createGame';
+import { getGame } from '../games/getGame';
+import { getGames } from '../games/getGames';
 
 export const getGamesController = async (
   req: Request,

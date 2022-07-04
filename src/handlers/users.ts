@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
-import { createUser } from './createUser';
-import { getUser } from './getUser';
+import { createUser } from '../users/createUser';
+import { getUser } from '../users/getUser';
 
 export const postUserController = async (
   req: Request,
