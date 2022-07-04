@@ -94,3 +94,12 @@ Or just set it as ``{{token}}`` postman global variable and postman will take ca
 3. Play
 
 Follow the API documentation: [Chess API](https://documenter.getpostman.com/view/6976266/UzJFvJ2E#229e70ca-0871-4f53-a487-5b357fa69681).
+
+4. Game implementation details.
+
+Requirement: Moves: "For the purposes of this project, non-pawn moves should result in an error code of your choosing."
+
+Implementation:
+
+- For all pieces the app with check if the piece is in correct position and respond with 'No cheating! Not found 'piece' at 'from' if not.
+- Only if the piece is in correct position it will check if the move is implemented and respond with 'Moves for 'piece' is not implemented yet'.

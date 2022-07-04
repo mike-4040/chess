@@ -1,4 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
+import { UserError } from '../utils/error';
 import type { ChessRequest } from '../utils/types';
 import { createGame } from './createGame';
 import { getGame } from './getGame';
@@ -12,7 +13,7 @@ export const getGamesController = async (
   try {
     const { uid } = req as ChessRequest;
 
-    const games = await getGames(uid)
+    const games = await getGames(uid);
 
     res.json({ games });
   } catch (err) {
@@ -48,6 +49,20 @@ export const createGamesController = async (
     const gameId = await createGame(uid);
 
     res.json({ gameId });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const getMovesHistoryController = async (
+  _req: Request,
+  _res: Response,
+  next: NextFunction
+) => {
+  try {
+    throw new UserError(
+      "I don't know how to implement this. If you have suggestion, please email to dumb@example.com!"
+    );
   } catch (err) {
     next(err);
   }
