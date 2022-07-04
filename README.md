@@ -66,13 +66,21 @@ npm run i
 3. Running application
 
 Developer mode
+
 ```bash
 npm start
 ```
 
 Production
+
 ```bash
 npm run start:prod
+```
+
+Testing
+
+```bash
+npm test
 ```
 
 ## Usage
