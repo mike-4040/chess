@@ -1,5 +1,5 @@
 import { UserError } from '../utils/error';
-import { findUser, insertUser } from './dataStore';
+import { findUserByEmail, insertUser } from './dataStore';
 
 export async function createUser(email: string): Promise<string> {
   /** @todo email validation */
@@ -8,7 +8,7 @@ export async function createUser(email: string): Promise<string> {
     throw new UserError('No email provided');
   }
 
-  const dbUser = await findUser(email);
+  const dbUser = await findUserByEmail(email);
 
   if (dbUser) {
     throw new UserError(`User with email '${email}' already exists`);

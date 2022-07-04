@@ -79,12 +79,18 @@ npm run start:prod
 The Application allows to play Chess game via API.
 API Documentation available at [Chess API](https://documenter.getpostman.com/view/6976266/UzJFvJ2E#229e70ca-0871-4f53-a487-5b357fa69681)
 
-You can use any API client, I suggest postman.com
+You can use any API client, I suggest postman.com, you can just click [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/6976266-ab9c6232-9eeb-4ba8-80a8-2a32906fd80e?action=collection%2Ffork&collection-url=entityId%3D6976266-ab9c6232-9eeb-4ba8-80a8-2a32906fd80e%26entityType%3Dcollection%26workspaceId%3D6cda8a35-4fad-46a2-8acc-e6c562458dec#?env%5BLocal%5D=W3sia2V5IjoiYmFzZVVybCIsInZhbHVlIjoibG9jYWxob3N0OjMwMDAiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoiZGVmYXVsdCIsInNlc3Npb25WYWx1ZSI6ImxvY2FsaG9zdDozMDAwIiwic2Vzc2lvbkluZGV4IjowfV0=)
 
 1. Sign up (create User)
-User Create User endpoint, add `email` to the body, any string.
+
+Use Create User endpoint, add `email` to the body, any string.
 
 2. Log in
+
 Use Get User endpoint to obtain `token` (it's actually just user id).
 Use `token` as Bearer token.
-Or just set it as ``{{token}}`` postman token variable and postman will take care of everything.
+Or just set it as ``{{token}}`` postman global variable and postman will take care of everything.
+
+3. Play
+
+Follow the API documentation: [Chess API](https://documenter.getpostman.com/view/6976266/UzJFvJ2E#229e70ca-0871-4f53-a487-5b357fa69681).

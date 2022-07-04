@@ -10,9 +10,9 @@ export const postUserController = async (
   try {
     const { email } = req.body;
 
-    const uid = await createUser(email);
+    const token = await createUser(email);
 
-    res.json({ uid });
+    res.json({ token });
   } catch (err) {
     next(err);
   }
@@ -23,9 +23,9 @@ export const getUserController = async (req: Request, res: Response, next:NextFu
     const { params } = req;
     const { email } = params;
 
-    const uid = await getUser(email);
+    const token = await getUser(email);
 
-    res.json({ uid });
+    res.json({ token });
   } catch (err) {
     next(err)
   }

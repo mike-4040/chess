@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb';
+
 import { dbClient } from '../services/mongo';
 import { User } from './types';
 
@@ -8,5 +10,8 @@ export const insertUser = async (email: string): Promise<string> => {
   return insertedId.toString();
 };
 
-export const findUser = async (email: string): Promise<User | null> =>
+export const findUserByEmail = async (email: string): Promise<User | null> =>
   await collection.findOne<User>({ email });
+
+export const findUserById = async (id: string): Promise<User | null> =>
+  await collection.findOne<User>({ _id: new ObjectId(id) });

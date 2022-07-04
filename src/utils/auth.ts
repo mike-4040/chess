@@ -1,8 +1,10 @@
 import type { NextFunction, Request, Response } from 'express';
-import { getUser } from '../users/getUser';
+import { ObjectId } from 'mongodb';
+
+import { findUserById } from '../users/dataStore';
 import { UserError } from './error';
 
-// a very naive auth implementation: email as bearer token :)
+// a very naive auth implementation: uid as bearer token :)
 export async function auth(req: Request, res: Response, next: NextFunction) {
   try {
     const { authorization } = req.headers;
@@ -10,15 +12,23 @@ export async function auth(req: Request, res: Response, next: NextFunction) {
       throw new UserError('Missing authorization header.');
     }
 
-    const [, email] = authorization.split(' ');
+    const [, token] = authorization.split(' ');
 
-    if (!email) {
-      throw new UserError('Missing authorization token (email).');
+    if (!token) {
+      throw new UserError('Missing authorization token.');
     }
 
-    const uid = await getUser(email);
+    if (!ObjectId.isValid(token)){
+       throw new UserError('Invalid authorization token.');
+    }
 
-    Object.assign(req, { uid });
+    const user = await findUserById(token);
+
+    if (!user) {
+      throw new UserError('Not authorized');
+    }
+
+    Object.assign(req, { uid: token });
     next();
   } catch (err) {
     const message = (err as any)?.message;
