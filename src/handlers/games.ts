@@ -1,4 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
+
 import { UserError } from '../utils/error';
 import type { ChessRequest } from '../utils/types';
 import { createGame } from '../games/createGame';

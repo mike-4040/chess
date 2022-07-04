@@ -1,7 +1,8 @@
-# Apprentice Node.js Backend Assignment The Task
+# Chess as a Service
 
-Build a “Chess as a Service” API
-Specifically, please create a REST endpoint for each of the following use cases, keeping in mind that for this project, we only want to deal with moving/updating pawns (and none of the other pieces).
+## Requirements
+
+Create a REST endpoint for each of the following use cases, keeping in mind that for this project, we only want to deal with moving/updating pawns (and none of the other pieces).
 
 1. Create a new chess game
 
@@ -95,11 +96,11 @@ Or just set it as ``{{token}}`` postman global variable and postman will take ca
 
 Follow the API documentation: [Chess API](https://documenter.getpostman.com/view/6976266/UzJFvJ2E#229e70ca-0871-4f53-a487-5b357fa69681).
 
-4. Game implementation details.
+## Implementation details
 
-Requirement: Moves: "For the purposes of this project, non-pawn moves should result in an error code of your choosing."
+**Requirement:** Moves: "For the purposes of this project, non-pawn moves should result in an error code of your choosing."
 
-Implementation:
+**Implementation:**
 
 - For all pieces the app with check if the piece is in correct position and respond with 'No cheating! Not found 'piece' at 'from' if not.
-- Only if the piece is in correct position it will check if the move is implemented and respond with 'Moves for 'piece' is not implemented yet'.
+- If the piece is in correct position the app will check if the move is implemented and respond with 'Moves for 'piece' is not implemented yet'.
