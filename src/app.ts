@@ -4,23 +4,20 @@ import express from 'express';
 import { auth } from './utils/auth';
 import { catchAll, healthCheck } from './utils/handlers';
 import { errorHandler } from './utils/error';
-import { gameRouter } from './routers/games';
-import { usersRouter } from './routers/users';
+import { gamesRouter } from './routers/games';
 import { movesRouter } from './routers/moves';
+import { usersRouter } from './routers/users';
 
 const port = process.env.PORT || 3000;
 
-const app = express();
-
-app.settings['x-powered-by'] = false;
-
-app
+express()
+  .set('x-powered-by', false)
   .use(express.json())
   .use(express.urlencoded({ extended: true }))
+  .use('/games', auth, gamesRouter)
   .get('/health', healthCheck)
-  .use('/users', usersRouter)
-  .use('/games', auth, gameRouter)
   .use('/moves', auth, movesRouter)
+  .use('/users', usersRouter)
   .use('*', catchAll)
   .use(errorHandler)
   .listen(port, () => {

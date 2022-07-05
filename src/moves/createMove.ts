@@ -4,7 +4,7 @@ import { generateMovesFunctions } from './moves';
 import type { GenerateMovesFunction, CompleteMove } from './types';
 import { UserError } from '../utils/error';
 import { insertMove } from './dataStore';
-import { updateBoard } from '../games/helpers';
+import { movePieceOnBoard } from '../games/helpers';
 import { validateCurrentLocation } from './helpers';
 
 export async function createMove(
@@ -57,9 +57,10 @@ export async function createMove(
     recordedAt: new Date(),
   };
 
+  /** @todo add transaction */
   const moveId = await insertMove(move);
 
-  updateBoard(board, piece, from, to);
+  movePieceOnBoard(board, piece, from, to);
 
   const newNextSide = nextSide === 'w' ? 'b' : 'w';
 

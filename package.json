@@ -1,7 +1,7 @@
 {
   "name": "chess",
   "version": "1.0.0",
-  "description": "The best online Chass game in the Universe",
+  "description": "The best online Chess game in the Universe",
   "main": "src/app.ts",
   "nodemonConfig": {
     "verbose": true,

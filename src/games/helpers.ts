@@ -2,7 +2,7 @@ import type { Board, ColKey, Piece, RowKey } from './types';
 
 // DANGER! no validation here
 // DANGER! mutating board
-export function updateBoard(
+export function movePieceOnBoard(
   board: Board,
   piece: Piece,
   from: string,

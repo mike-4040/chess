@@ -7,7 +7,7 @@ import {
   getMovesHistoryController,
 } from '../handlers/games';
 
-export const gameRouter = Router()
+export const gamesRouter = Router()
   .get('/', getGamesController)
   .get('/:gameId', getGameController)
   .post('/', createGamesController)
